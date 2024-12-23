@@ -1,0 +1,30 @@
+.sidebar-logo {
+    font-size: 14px;
+    font-weight: bold;
+    color: #5f3dc4; /* Vibrant purple color */
+    text-align: center;
+ }
+
+ .sidebar-logo h2,.ant-menu-submenu-title,.ant-menu-title-content{
+    font-family: 'Montserrat', sans-serif!important;
+ }
+  
+  .ant-menu {
+    padding: 8px 0;
+  }
+  
+  .ant-menu-item {
+    margin: 0;
+    border-radius: 8px;
+    padding: 8px 16px;
+  }
+  
+  .ant-menu-item-selected {
+    background-color: #f0f0ff !important; /* Light purple for active */
+    color: #5f3dc4 !important; /* Purple text */
+  }
+  
+  .ant-menu-item:hover {
+    background-color: #f9f9f9 !important;
+  }
+  

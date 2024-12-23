@@ -1,0 +1,40 @@
+.dashboard-card {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .balance-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .balance-column {
+    text-align: center;
+  }
+  
+  .dashboard-select {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .balance-label {
+    font-size: 14px;
+    color: #666!important;
+  }
+  
+  .balance-value {
+    font-size: 18px!important;
+    font-weight: bold!important;
+    margin-top:8px!important;
+  }
+  
+  .positive-balance {
+    color: #4caf50!important; 
+  }
+  
+  .neutral-balance {
+    color: #333!important; 
+  }
+  

@@ -1,0 +1,28 @@
+/* Ensure the root layout spans the full viewport */
+html,
+body,
+#root {
+  height: 100%; 
+  margin: 0; 
+  padding: 0; 
+}
+
+/* Global font and background color */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #eff4fb;
+}
+
+.ant-form-item-label > label, .ant-typography,.ant-dropdown-menu-title-content,.ant-card-head-title,.ant-form-item-label {
+  font-family: 'Montserrat', sans-serif !important; 
+}
+
+h1{
+  font-size: 18px;
+    font-weight: 600;
+}
+
+.ant-tabs-content-holder{
+  background: #fff;
+  padding: 27px;
+}

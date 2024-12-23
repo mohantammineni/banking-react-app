@@ -1,0 +1,55 @@
+.fund-transfer-card {
+    border-radius: 12px;
+    background-color: #fff;
+    position: relative;
+    padding-top: 20px;
+  }
+  
+  .add-beneficiary-section {
+    text-align: right;
+    margin-bottom: 50px;
+  }
+  
+ 
+  
+  .account-details-card {
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .payment-mode-section {
+    margin-bottom: 20px;
+  }
+  
+  .payment-radio {
+    font-size: 14px;
+    border-radius: 8px;
+    margin-right: 2px;
+  }
+  
+  .form-section .form-input {
+    margin-bottom: 16px;
+  }
+  
+  .button-section {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .transfer-btn {
+    background-color: #52c41a;
+    color: #fff;
+    border-radius: 8px;
+    padding: 0 68px;
+    margin-right: 6px;
+  }
+  
+  .reset-btn {
+    border: 1px solid #ff4d4f;
+    color: #ff4d4f;
+    border-radius: 8px;
+    padding: 0 24px;
+  }
+  
