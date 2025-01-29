@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
+import LandingPage from "../pages/LandingPage";
 
 import PrivateRoute from "./PrivateRoute";
 import { AuthProvider } from "../context/AuthContext";
@@ -15,13 +16,15 @@ import ChangePassword from "../pages/change-password";
 import CountryRestriction from "../pages/restriction/CountryRestriction";
 import ManagePayee from "../pages/transfer-billpay/MangePayee";
 import FundTransfer from "../pages/fund-transfer";
+import SignupPage from "../pages/SignUpPage";
+import AccountStatement from "../pages/accounts/AccountStatement";
 
 const submenuRoutes = [
 
   //Acounts
   { path: "accounts/loan", component: CountryRestriction },
   { path: "accounts/export-credit", component: CountryRestriction },
-  { path: "accounts/account-statement", component: CountryRestriction },
+  { path: "accounts/account-statement", component: AccountStatement },
   { path: "accounts/expected-payment", component: CountryRestriction },
 
   {path :"fund-transfer", component: FundTransfer },
@@ -98,6 +101,8 @@ const AppRoutes = () => {
         <Routes>
           {/* Public Route */}
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/welcome" element={<LandingPage />} />
 
           {/* Private Routes */}
           <Route

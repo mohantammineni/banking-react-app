@@ -17,6 +17,19 @@ body {
   font-family: 'Montserrat', sans-serif !important; 
 }
 
+.ant-layout-sider-trigger, .ant-btn-color-primary,.ant-radio-button-checked {
+  background-color: #93645d!important;
+}
+
+.ant-layout-sider-trigger:hover, .ant-btn-color-primary:hover {
+  background-color: #804940!important;
+}
+.ant-radio-button-checked:hover{
+  color:#fff!important;
+}
+.ant-radio-button-wrapper:hover,.ant-tabs-tab-active >div,.ant-alert-icon,.anticon-swap{
+  color:#804940!important;
+}
 h1{
   font-size: 18px;
     font-weight: 600;
@@ -26,3 +39,9 @@ h1{
   background: #fff;
   padding: 27px;
 }
+.ant-alert-message{font-size: 30px!important;font-weight: bold;}
+.ant-alert-description{font-size: 23px!important;}
+.ant-alert-info{border: 1px solid #804940;}
+.font-bold{font-weight: bold;}
+th{background:#93645d!important;color:#fff!important;}
+.ant-pagination-item-active a{color:#93645d!important}

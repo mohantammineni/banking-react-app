@@ -81,11 +81,11 @@ const Dashboard = () => {
         </Col>
       </Row>
 
-      {/* <Row gutter={[16, 16]} style={{ marginBottom: "16px" }}>
+      <Row gutter={[16, 16]} style={{ marginBottom: "16px" }}>
         <Col xs={24}>
           <Approvals userData={userData} />
         </Col>
-      </Row> */}
+      </Row>
     </div>
   );
 };

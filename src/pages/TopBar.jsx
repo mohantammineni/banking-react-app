@@ -16,13 +16,13 @@ import "./TopBar.css";
 const { Header } = Layout;
 const { Text } = Typography;
 
-const TopBar = ({ balance }) => {
+const TopBar = () => {
   const { logout } = useAuth();
+  const { balance } = useBalance(); // Get balance from useBalance context
   const navigate = useNavigate();
- 
+
   const [userData, setUserData] = useState(null);
 
-  console.log("Balance in TopBar:", balance);
   useEffect(() => {
     // Fetch user data from localStorage
     const storedData = JSON.parse(localStorage.getItem("userData"));
@@ -46,8 +46,7 @@ const TopBar = ({ balance }) => {
         icon={<DollarCircleOutlined />}
         style={{ cursor: "default" }}
       >
-        Account Balance:{" "}
-        <strong>${balance?.total_balance || "0.00"}</strong> 
+        Account Balance: <strong>${balance?.total_balance || "0.00"}</strong> {/* Use balance from context */}
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="profile" icon={<UserOutlined />}>

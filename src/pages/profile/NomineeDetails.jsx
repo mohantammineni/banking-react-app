@@ -3,21 +3,21 @@ import { Card, Col, Row, Typography } from "antd";
 
 const { Text } = Typography;
 
-const NomineeDetails = () => {
+const NomineeDetails = ({data}) => {
   return (
     <Card title="Nominee Details" className="profile-card">
       <Row gutter={16}>
-        <Col span={12} className="profile-col">
+        <Col span={8} className="profile-col">
           <Text className="profile-label">Nominee Name:</Text>
-          <Text>John Doe</Text>
+          <Text className="font-bold">{data?.nominee_name}</Text>
         </Col>
-        <Col span={12} className="profile-col">
+        <Col span={8} className="profile-col">
           <Text className="profile-label">Relation:</Text>
-          <Text>Brother</Text>
+          <Text className="font-bold">{data?.nominee_relation}</Text>
         </Col>
-        <Col span={12} className="profile-col">
+        <Col span={8} className="profile-col">
           <Text className="profile-label">DOB:</Text>
-          <Text>01/01/1990</Text>
+          <Text className="font-bold">{data?.nominee_dob}</Text>
         </Col>
       </Row>
     </Card>

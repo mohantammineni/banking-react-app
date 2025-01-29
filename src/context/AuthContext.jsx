@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  // const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem("authToken") // Check if token exists in localStorage
   );
@@ -22,12 +23,14 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (!isAuthenticated && window.location.pathname !== "/login") {
-      navigate("/login");
-    } else if (isAuthenticated && window.location.pathname === "/login") {
-      navigate("/dashboard"); // Redirect to dashboard if already authenticated
+    if (!isAuthenticated && window.location.pathname !== "/welcome" && window.location.pathname !== "/login" && window.location.pathname !== "/signup") {
+      navigate("/welcome"); // Redirect to welcome screen for unauthenticated users
+    } else if (isAuthenticated && (window.location.pathname === "/login" || window.location.pathname === "/signup" || window.location.pathname === "/welcome")) {
+      navigate("/dashboard"); // Redirect authenticated users to the dashboard
     }
   }, [isAuthenticated, navigate]);
+  
+  
   
 
   return (

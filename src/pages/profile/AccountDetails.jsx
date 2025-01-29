@@ -9,23 +9,31 @@ const AccountDetails = ({ data }) => {
       <Row gutter={16}>
         <Col span={12} className="profile-col">
           <Text className="profile-label">Account Holder Name:</Text>
-          <Text>{data.user_name}</Text>
+          <Text className="font-bold">{data?.user_name}</Text>
         </Col>
         <Col span={12} className="profile-col">
           <Text className="profile-label">Account No:</Text>
-          <Text>{data.account_number}</Text>
+          <Text className="font-bold">{data?.account_number}</Text>
         </Col>
         <Col span={12} className="profile-col">
           <Text className="profile-label">Branch:</Text>
-          <Text>GENEVA</Text> {/* Static since not in provided data */}
+          <Text className="font-bold">{data?.branch}</Text> 
         </Col>
         <Col span={12} className="profile-col">
           <Text className="profile-label">Account Type:</Text>
-          <Text>Corporate</Text> {/* Static since not in provided data */}
+          <Text className="font-bold">{data?.account_type}</Text> 
         </Col>
         <Col span={12} className="profile-col">
           <Text className="profile-label">SWIFT Code:</Text>
-          <Text>DUBACHGG</Text> {/* Static since not in provided data */}
+          <Text className="font-bold">{data?.swift_code}</Text> 
+        </Col>
+        <Col span={12} className="profile-col">
+          <Text className="profile-label">Bank:</Text>
+          <Text className="font-bold">{data?.bank}</Text> 
+        </Col>
+        <Col span={12} className="profile-col">
+          <Text className="profile-label">Card No:</Text>
+          <Text className="font-bold">{data?.cardno}</Text> 
         </Col>
       </Row>
     </Card>

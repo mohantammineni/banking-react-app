@@ -3,6 +3,7 @@ import UserProfile from "./UserProfile";
 import AccountDetails from "./AccountDetails";
 import NomineeDetails from "./NomineeDetails";
 import "./index.css";
+import PhotoDetails from "./PhotoDetails";
 
 const Profile = () => {
   const [profileData, setProfileData] = useState(null);
@@ -22,6 +23,7 @@ const Profile = () => {
           <UserProfile data={profileData} />
           <AccountDetails data={profileData} />
           <NomineeDetails data={profileData} />
+          <PhotoDetails />
         </>
       )}
     </div>

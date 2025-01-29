@@ -1,30 +1,74 @@
 .sidebar-logo {
-    font-size: 14px;
-    font-weight: bold;
-    color: #5f3dc4; /* Vibrant purple color */
-    text-align: center;
- }
+  padding-top: 10px;
+  padding-left: 25px;
+}
 
- .sidebar-logo h2,.ant-menu-submenu-title,.ant-menu-title-content{
-    font-family: 'Montserrat', sans-serif!important;
- }
-  
-  .ant-menu {
-    padding: 8px 0;
-  }
-  
-  .ant-menu-item {
-    margin: 0;
-    border-radius: 8px;
-    padding: 8px 16px;
-  }
-  
-  .ant-menu-item-selected {
-    background-color: #f0f0ff !important; /* Light purple for active */
-    color: #5f3dc4 !important; /* Purple text */
-  }
-  
-  .ant-menu-item:hover {
-    background-color: #f9f9f9 !important;
-  }
-  
+.sidebar-logo img {
+  width: 123px;
+}
+
+.sidebar-logo h2, 
+.ant-menu-submenu-title, 
+.ant-menu-title-content {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Menu Container */
+.ant-menu {
+  padding: 8px 0;
+}
+.ant-menu-submenu {
+  margin-left:3px;
+  margin-right: 3px;
+}
+.ant-menu-item span >svg,.ant-menu-submenu-title span >svg{color:#ffffff}
+/* Default Menu Item Styles */
+.ant-menu-item, 
+.ant-menu-submenu-title{
+  margin: 0;
+  border-radius: 8px;
+  background-color: #93645d !important; /* Default background */
+  color: #ffffff !important; /* Default text color */
+}
+
+.ant-menu-submenu-title:hover span >svg{
+  color:#93645d;
+}
+
+/* On Hover: Inverse the colors */
+.ant-menu-item:hover .ant-menu-item span >svg, 
+.ant-menu-submenu-title:hover .ant-menu-item span >svg {
+  background-color: #ffffff !important; /* Inverse background */
+  color: #93645d!important ; /* Inverse text color */
+}
+
+/* Selected Menu Item Styles */
+.ant-menu-item-selected {
+  background-color: #f0f0ff !important; /* Light purple for active */
+  color: #5f3dc4 !important; /* Purple text */
+}
+
+/* Submenu Background and Hover Styles */
+.ant-menu-submenu {
+  background-color: #93645d !important; /* Default submenu background */
+}
+
+.ant-menu-submenu-title:hover {
+  background-color: #ffffff !important; /* Inverse submenu background on hover */
+  color: #93645d !important; /* Inverse submenu text on hover */
+}
+
+/* Submenu Items */
+.ant-menu-sub {
+  background-color: #93645d !important; /* Default submenu background */
+}
+
+.ant-menu-sub .ant-menu-item {
+  background-color: #93645d !important; /* Default submenu item background */
+  color: #ffffff !important; /* Default submenu item text color */
+}
+
+.ant-menu-sub .ant-menu-item:hover {
+  background-color: #ffffff !important; /* Inverse submenu item background */
+  color: #93645d !important; /* Inverse submenu item text color */
+}

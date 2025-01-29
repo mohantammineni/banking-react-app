@@ -106,10 +106,11 @@ const AccountSummary = ({ userData, fetchBalance }) => {
 
   const columns = [
     { title: "Transaction ID", dataIndex: "id", key: "id" },
-    { title: "Date", dataIndex: "created_at", key: "created_at" },
+    { title: "Transaction Posted Date", dataIndex: "created_at", key: "created_at" },
+    { title: "Check No / Ref No", dataIndex: "check_ref_no", key: "check_ref_no" },
     { title: "Amount", dataIndex: "amount", key: "amount" },
     { title: "Beneficiary", dataIndex: "beneficiary_name", key: "beneficiary_name" },
-    { title: "Remark", dataIndex: "remark", key: "remark" },
+    { title: "Transaction Remarks", dataIndex: "remark", key: "remark" },
     {
       title: "Status",
       key: "status",

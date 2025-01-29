@@ -52,7 +52,10 @@ const AddBeneficiary = () => {
           <Form.Item
             label="Beneficiary Name"
             name="name"
-            rules={[{ required: true, message: "Please enter name!" }]}
+            rules={[{ required: true, message: "Please enter name!" },{
+              pattern: /^[a-zA-Z\s]+$/,
+              message: "Name can only contain letters and spaces!",
+            },]}
           >
             <Input placeholder="Beneficiary Name" />
           </Form.Item>
@@ -61,7 +64,10 @@ const AddBeneficiary = () => {
           <Form.Item
             label="Beneficiary A/c No."
             name="accountNumber"
-            rules={[{ required: true, message: "Please enter account number!" }]}
+            rules={[{ required: true, message: "Please enter account number!" }, {
+              pattern: /^[0-9]+$/,
+              message: "Account number can only contain numbers!",
+            },]}
           >
             <Input placeholder="Beneficiary Account Number" />
           </Form.Item>
@@ -81,6 +87,11 @@ const AddBeneficiary = () => {
                   return Promise.reject(new Error("Account numbers do not match!"));
                 },
               }),
+              {
+                pattern: /^[0-9]+$/,
+                message: "Account number can only contain numbers!",
+              },
+        
             ]}
           >
             <Input placeholder="Confirm Beneficiary Account Number" />
@@ -117,6 +128,7 @@ const AddBeneficiary = () => {
             <Select placeholder="Select Account Type">
               <Option value="Savings">Savings</Option>
               <Option value="Current">Current</Option>
+              <Option value="Corporate">Corporate</Option>
             </Select>
           </Form.Item>
         </Col>

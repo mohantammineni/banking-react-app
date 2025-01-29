@@ -7,16 +7,30 @@ const { Title } = Typography;
 const LoginPage = () => {
   const { login } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [step, setStep] = useState(1); // Step state (1 for Login ID, 2 for Password, 3 for Auth Code)
+  const [loginId, setLoginId] = useState(""); // State to store loginId
+  const [form] = Form.useForm(); // Ant Design form instance
 
-  const handleLogin = async (values) => {
-    const payload = {
-      user_name: values.loginId,
-      password: values.password,
-    };
-  
-    setLoading(true);
-  
+  const handleNext = async () => {
     try {
+      const values = await form.validateFields(["loginId"]);
+      setLoginId(values.loginId); // Save loginId to state
+      setStep(2); // Move to step 2
+    } catch (error) {
+      console.error("Validation failed:", error);
+    }
+  };
+
+  const handleLogin = async () => {
+    try {
+      const values = await form.validateFields(["password"]);
+      const payload = {
+        user_name: loginId, // Use loginId from state
+        password: values.password,
+      };
+
+      setLoading(true);
+
       const response = await fetch("https://avinashdevineni.in/bank/login.php", {
         method: "POST",
         headers: {
@@ -24,19 +38,21 @@ const LoginPage = () => {
         },
         body: JSON.stringify(payload),
       });
-  
+
       const data = await response.json();
-  
+      
       if (response.ok && data.code === 200 && data.message) {
-        const user = data.message; // The user data from the response
-        const token = user.user_id; // Extract token from `user_id`
-  
-        // Store the token and user data explicitly
+        message.success("Password validated! Enter the authentication code.");
+        const user = data.message;
+        const token = data.message.id;
+        console.log(user);
+        console.log("token"+token);
+        
+        
         localStorage.setItem("authToken", token);
         localStorage.setItem("userData", JSON.stringify(user));
-  
-        message.success("Login successful! Redirecting...");
-        login(); // Redirect to the dashboard
+
+        setStep(3); // Move to step 3 for authentication code
       } else {
         message.error(data.message || "Invalid login credentials.");
       }
@@ -47,43 +63,120 @@ const LoginPage = () => {
       setLoading(false);
     }
   };
-  
-  
-  
-  
+
+  const handleAuthCode = async () => {
+    try {
+      const values = await form.validateFields(["authCode"]);
+      if (values.authCode === "123456") {
+        message.success("Authentication successful! Redirecting to the dashboard...");
+        login(); // Redirect to the dashboard
+      } else {
+        message.error("Invalid authentication code.");
+      }
+    } catch (error) {
+      console.error("Validation failed:", error);
+    }
+  };
 
   return (
     <div style={styles.container}>
+      
       <Card style={styles.card} bordered={true}>
-        <Title level={2} style={styles.title}>
-          Welcome
-        </Title>
-        <Form layout="vertical" onFinish={handleLogin} style={styles.form}>
-          <Form.Item
-            label="Login ID"
-            name="loginId"
-            rules={[{ required: true, message: "Please enter your Login ID!" }]}
-          >
-            <Input placeholder="Enter your Login ID" />
-          </Form.Item>
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[{ required: true, message: "Please enter your password!" }]}
-          >
-            <Input.Password placeholder="Enter your password" />
-          </Form.Item>
-          <Form.Item>
-            <Button
-              type="primary"
-              shape="round"
-              htmlType="submit"
-              block
-              loading={loading}
-            >
-              Sign In
-            </Button>
-          </Form.Item>
+      
+      <Title level={2} style={styles.title}>
+  <img src="/logo.png" alt="Logo" />
+  <div style={{ fontFamily: 'Lardy Serif Regular", Georgia' }}>
+    {step === 1 ? "Please Login" : `Welcome, ${loginId}`}
+  </div>
+</Title>
+        <Form form={form} layout="vertical" style={styles.form}>
+          {step === 1 && (
+            <>
+              <Form.Item
+                name="loginId"
+                rules={[{ required: true, message: "Please enter your Login ID!" }]}
+              >
+                <Input placeholder="Enter your Login ID" style={styles.input} />
+              </Form.Item>
+              <Form.Item shouldUpdate>
+                {() => (
+                  <Button
+                    type="primary"
+                    shape="round"
+                    block
+                    disabled={!form.getFieldValue("loginId")}
+                    onClick={handleNext}
+                  >
+                    Next
+                  </Button>
+                )}
+              </Form.Item>
+            </>
+          )}
+
+          {step === 2 && (
+            <>
+              <Form.Item
+                name="password"
+                rules={[{ required: true, message: "Please enter your password!" }]}
+              >
+                <Input.Password
+                  placeholder="Enter your password"
+                  style={styles.input}
+                />
+              </Form.Item>
+              <div style={styles.buttonRow}>
+                <Button
+                  type="default"
+                  shape="round"
+                  style={styles.button}
+                  onClick={() => setStep(1)} // Move back to step 1
+                >
+                  Back
+                </Button>
+                <Button
+                  type="primary"
+                  shape="round"
+                  htmlType="button"
+                  style={styles.button}
+                  loading={loading}
+                  onClick={handleLogin}
+                >
+                  Login
+                </Button>
+              </div>
+            </>
+          )}
+
+          {step === 3 && (
+            <>
+              <Form.Item
+                name="authCode"
+                rules={[{ required: true, message: "Please enter the authentication code!" }]}
+              >
+                <Input placeholder="Enter authentication code" style={styles.input} />
+              </Form.Item>
+              <div style={styles.buttonRow}>
+                <Button
+                  type="default"
+                  shape="round"
+                  style={styles.button}
+                  onClick={() => setStep(2)} // Move back to step 2
+                >
+                  Back
+                </Button>
+                <Button
+                  type="primary"
+                  shape="round"
+                  htmlType="button"
+                  style={styles.button}
+                  onClick={handleAuthCode}
+                >
+                  Submit
+                </Button>
+              </div>
+            </>
+          )}
         </Form>
       </Card>
     </div>
@@ -96,14 +189,24 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#eff4fb",
+    backgroundImage: "url('bg.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
+  buttonRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    gap: "10px",
+  },
+  button: {
+    flex: 1,
   },
   card: {
     width: 400,
     padding: "20px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     borderRadius: "8px",
-    backgroundColor: "#fff",
+    backgroundColor: "#f5f3eb",
   },
   title: {
     textAlign: "center",
@@ -111,6 +214,14 @@ const styles = {
   },
   form: {
     marginTop: "10px",
+  },
+  input: {
+    border: "none",
+    borderBottom: "1px solid #d9d9d9",
+    borderRadius: "0",
+    boxShadow: "none",
+    borderTop:".84375em solid transparent",
+    background:"#f5f3eb"
   },
 };
 

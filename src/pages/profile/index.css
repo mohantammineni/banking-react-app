@@ -3,6 +3,8 @@
  background-color: #f5f7fa; /* Light gray background */
 }
 
+.profile-page-container .ant-card-head{background-color: #93645d;color:#fff;}
+
 /* Styling for profile cards */
 .profile-card {
   margin-bottom: 24px;

@@ -84,8 +84,8 @@ const ViewBeneficiary = () => {
       render: (_, record) => (
         <Space>
           <Button
-            type="link"
-            danger
+            type="primary"
+            block
             onClick={() => handleDeleteBeneficiary(record.key)}
           >
             Delete
